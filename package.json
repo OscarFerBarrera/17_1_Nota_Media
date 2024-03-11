@@ -1,0 +1,25 @@
+{
+  "name": "nota_media",
+  "version": "1.0.0",
+  "description": "Ejercicio de node",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oscar Barrera",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^9.0.11"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
