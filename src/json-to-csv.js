@@ -1,6 +1,40 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")();
 
+const creaNotaMedia = (data) => {
+  const alumnos = [];
+  const newArray = [];
+
+  data.forEach((x) => {
+    if (!alumnos.includes(x.name)) {
+      alumnos.push(x.name);
+      const newObjec = {
+        name: x.name,
+        mark: x.mark,
+        cont: 1,
+      };
+      newArray.push(newObjec);
+    } else {
+      newArray.forEach((z) => {
+        if (z.name === x.name) {
+          z.mark = z.mark + x.mark;
+          z.cont = z.cont + 1;
+        }
+      });
+    }
+  });
+  const arrNotas = [];
+  newArray.forEach((x) => {
+    const newObjec = {
+      name: x.name,
+      media: x.mark / x.cont,
+    };
+    arrNotas.push(newObjec);
+  });
+
+  return arrNotas;
+};
+
 const convertJsonToCsv = (jsonData) => {
   let csv = "";
 
@@ -31,8 +65,9 @@ fs.readFile(filePath, (readError, data) => {
   } else {
     try {
       const parsedData = JSON.parse(data);
-      const csv = convertJsonToCsv(parsedData);
-
+      const dataNotaMedia = creaNotaMedia(parsedData);
+      const csv = convertJsonToCsv(dataNotaMedia);
+      console.log(csv);
       const filePathOutput = prompt("Introduce la ruta del fichero a generar: ");
       fs.writeFile(filePathOutput, csv, (error) => {
         if (error) {
